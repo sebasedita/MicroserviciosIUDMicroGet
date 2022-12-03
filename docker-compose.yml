@@ -1,0 +1,38 @@
+version: '3.7'
+services:
+
+ microserviciosiudget01:
+  container_name: microserviciosiudget01
+  image: sebasbg25/microserviciosiudget:V1
+  ports:
+   - 6051:5500
+  networks:
+   - microserviciosiudget
+  environment:
+   HOST: microserviciosiudget01
+
+ microserviciosiudget02:
+  container_name: microserviciosiudget02
+  image: sebasbg25/microserviciosiudget:V1
+  ports:
+   - 6062:5500
+  networks:
+   - microserviciosiudget
+  environment:
+   HOST: microserviciosiudget02
+
+ load-balancer:
+  container_name: ngninxiudget
+  image: sebasbg25/ngninxiudget:V1
+  ports:
+   - 6068:80
+  networks:
+   - microserviciosiudget
+  environment:
+   HOST: ngninxiudget
+  depends_on:
+   - microserviciosiudget01
+   - microserviciosiudget02
+  restart: always
+networks: 
+ microserviciosiudget:
