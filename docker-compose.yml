@@ -4,6 +4,8 @@ services:
  microserviciosiudget01:
   container_name: microserviciosiudget01
   image: sebasbg25/microserviciosiudget:V1
+  build:
+   context: .
   ports:
    - 6051:5500
   networks:
@@ -14,6 +16,8 @@ services:
  microserviciosiudget02:
   container_name: microserviciosiudget02
   image: sebasbg25/microserviciosiudget:V1
+  build:
+   context: .
   ports:
    - 6062:5500
   networks:
